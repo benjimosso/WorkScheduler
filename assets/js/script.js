@@ -1,5 +1,5 @@
+// Global Variables.
 var textearea = $('textarea')
-var InputClass = $('.form-control')
 var Present = $('.present')
 var Past = $('.past')
 var future = $('.future')
@@ -45,12 +45,17 @@ function TimeCheck() {
     $("#19 .form-control").val(localStorage.getItem("19"));
 }
 
+
+// Call TimeCheck 
 TimeCheck()
+
+
 
 // event listener on save buttons to send the input from text area to local storage
 $('.btn-primary').on('click', function() {
     var UserText = $(this).siblings('.form-control').val();
     var Hour = $(this).parent().attr('id')
+    console.log(Hour)
     localStorage.setItem(Hour, UserText)
 
-})
+});
