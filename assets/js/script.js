@@ -7,22 +7,22 @@ var InputClass = $('.form-control')
     // console.log('-----------------')
 
 // it's calling only the first class. 
-// var Present = $('.present')
-// var Past = $('.past')
-// var future = $('.future')
+var Present = $('.present')
+var Past = $('.past')
+var future = $('.future')
 
 
-// Present.removeClass('present')
-// Past.removeClass('past')
-// future.removeClass('future')
-// var test = $('.input-group')
-// console.log(test)
+Present.removeClass('present')
+Past.removeClass('past')
+future.removeClass('future')
+    // var test = $('.input-group')
+    // console.log(test)
 
 
 var Timer = moment().format('HH');
 //Timer = '19';
 
-console.log(Timer)
+//console.log(Timer)
 
 // test = textearea.value
 // console.log(test)
@@ -33,25 +33,18 @@ function DateTime() {
 }
 DateTime()
 
-function Background() {
+function TimeCheck() {
     $(textearea).each(function() {
-            console.log("!!", this.dataset.number, Timer)
-                // console.log("KK", this.dataset)
-            console.log(this)
+            //console.log("!!", this.dataset.number, Timer)
+            // console.log("KK", this.dataset)
+            //console.log(this)
 
             if (this.dataset.number < Timer) {
                 $(this).addClass('past')
-                $(this).removeClass('future')
-                $(this).removeClass('present')
-
             } else if (this.dataset.number > Timer) {
                 $(this).addClass('future')
-                $(this).removeClass('present')
-                $(this).removeClass('past')
             } else if (this.dataset.number === Timer) {
                 $(this).addClass('present')
-                $(this).removeClass('past')
-                $(this).removeClass('future')
             }
             // console.log(this.dataset.number)
         })
@@ -59,9 +52,20 @@ function Background() {
         // console.log("future", future)
         // console.log("Present", Present)
         // console.log("##", Past === future, Past === Present)
+
+    $("#10 .form-control").val(localStorage.getItem("10"));
+    $("#11 .form-control").val(localStorage.getItem("11"));
+    $("#12 .form-control").val(localStorage.getItem("12"));
+    $("#13 .form-control").val(localStorage.getItem("13"));
+    $("#14 .form-control").val(localStorage.getItem("14"));
+    $("#15 .form-control").val(localStorage.getItem("15"));
+    $("#16 .form-control").val(localStorage.getItem("16"));
+    $("#17 .form-control").val(localStorage.getItem("17"));
+    $("#18 .form-control").val(localStorage.getItem("18"));
+    $("#19 .form-control").val(localStorage.getItem("19"));
 }
 
-Background()
+TimeCheck()
 
 
 
@@ -80,7 +84,7 @@ Background()
 //     }
 // }
 // BackgroundAlternative()
-document.addEventListener('click', userPick)
+
 
 // var input = document.getElementById('input').value
 // localStorage.setItem('userinput', input)
@@ -88,27 +92,32 @@ document.addEventListener('click', userPick)
 // console.log(input)
 
 
-function userPick(event) {
-    event.preventDefault()
-    if (event.target.classList.contains("btn")) {
-        // $('li').each(function(index) {
-        //     $(this).find('textarea').val()
-        // })
+// function userPick(event) {
+//     event.preventDefault()
+//     if (event.target.classList.contains("btn")) {
 
 
-        // replace for Jquery (if you know how to)
-        for (let i = 0; i < InputClass.length; i++) {
-            //const test = InputClass[i].value;
+//         // replace for Jquery (if you know how to)
+//         $(InputClass).each(function() {
+//             console.log(this)
 
-            localStorage.setItem('userinput', InputClass[i].value)
-            localStorage.getItem('userinput')
-            console.log(InputClass[i].value)
+//             localStorage.setItem('userinput', $(this).value)
+//             localStorage.getItem('userinput')
+//                 //console.log(InputClass[i].value)
 
-        }
-        //var input = document.getElementsByClassName('form-control').value
-        //var Input2 = document.getElementById('input').value
-        // localStorage.setItem('userinput', input)
-        // localStorage.getItem('userinput')
-        // console.log(input)
-    }
-}
+//         });
+//         //var input = document.getElementsByClassName('form-control').value
+//         //var Input2 = document.getElementById('input').value
+//         // localStorage.setItem('userinput', input)
+//         // localStorage.getItem('userinput')
+//         // console.log(input)
+//     }
+// }
+
+$('.btn-primary').on('click', function() {
+    var UserText = $(this).siblings('.form-control').val();
+    var Hour = $(this).parent().attr('id')
+    console.log("a ver si sale")
+    localStorage.setItem(Hour, UserText)
+
+})
