@@ -16,4 +16,4 @@ Github Publication:
 https://benjimosso.github.io/WorkScheduler/
 
 Screenshot:
-![Screenshot](https://github.com/benjimosso/WorkScheduler/blob/main/Screenshot.PNG)
+![Screenshot](https://github.com/benjimosso/WorkScheduler/blob/main/assets/Screenshot.PNG)
