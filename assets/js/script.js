@@ -1,58 +1,38 @@
-// var dateUnputE1 = $('#currentDay')
 var textearea = $('textarea')
-    // var SaveButton = $('#save')
 var InputClass = $('.form-control')
-    // console.log('-----------------')
-    // console.log(InputClass)
-    // console.log('-----------------')
-
-// it's calling only the first class. 
 var Present = $('.present')
 var Past = $('.past')
 var future = $('.future')
 
-
+// Hide the classes. 
 Present.removeClass('present')
 Past.removeClass('past')
 future.removeClass('future')
-    // var test = $('.input-group')
-    // console.log(test)
 
-
+// declare var to show only the Hour for later use in ifstatement
 var Timer = moment().format('HH');
-//Timer = '19';
 
-//console.log(Timer)
-
-// test = textearea.value
-// console.log(test)
-
+// Current date function
 function DateTime() {
     var Weekday = moment().format('ddd Do MMM YYYY')
     $('#currentDay').text(Weekday)
 }
 DateTime()
 
+// Background change and local storage set up
 function TimeCheck() {
+    // if statement comparing Timer var and data set on textarea
     $(textearea).each(function() {
-            //console.log("!!", this.dataset.number, Timer)
-            // console.log("KK", this.dataset)
-            //console.log(this)
+        if (this.dataset.number < Timer) {
+            $(this).addClass('past')
+        } else if (this.dataset.number > Timer) {
+            $(this).addClass('future')
+        } else if (this.dataset.number === Timer) {
+            $(this).addClass('present')
+        }
+    })
 
-            if (this.dataset.number < Timer) {
-                $(this).addClass('past')
-            } else if (this.dataset.number > Timer) {
-                $(this).addClass('future')
-            } else if (this.dataset.number === Timer) {
-                $(this).addClass('present')
-            }
-            // console.log(this.dataset.number)
-        })
-        // console.log("Past", Past)
-        // console.log("future", future)
-        // console.log("Present", Present)
-        // console.log("##", Past === future, Past === Present)
-
+    // Grab inputs from local storage to prevent erase them when refresh page
     $("#10 .form-control").val(localStorage.getItem("10"));
     $("#11 .form-control").val(localStorage.getItem("11"));
     $("#12 .form-control").val(localStorage.getItem("12"));
@@ -67,57 +47,10 @@ function TimeCheck() {
 
 TimeCheck()
 
-
-
-
-
-// Object.keys(InputClass[3].dataset.number).forEach(element => console.log(element));
-
-// function BackgroundAlternative() {
-//     $()
-//     if (InputClass[i].dataset.number < Timer) {
-//         Past.addClass('past')
-//     } else if (InputClass[i].dataset.number > Timer) {
-//         future.addClass('future')
-//     } else if (InputClass[i].dataset.number === Timer) {
-//         Present.addClass('present')
-//     }
-// }
-// BackgroundAlternative()
-
-
-// var input = document.getElementById('input').value
-// localStorage.setItem('userinput', input)
-// localStorage.getItem('userinput')
-// console.log(input)
-
-
-// function userPick(event) {
-//     event.preventDefault()
-//     if (event.target.classList.contains("btn")) {
-
-
-//         // replace for Jquery (if you know how to)
-//         $(InputClass).each(function() {
-//             console.log(this)
-
-//             localStorage.setItem('userinput', $(this).value)
-//             localStorage.getItem('userinput')
-//                 //console.log(InputClass[i].value)
-
-//         });
-//         //var input = document.getElementsByClassName('form-control').value
-//         //var Input2 = document.getElementById('input').value
-//         // localStorage.setItem('userinput', input)
-//         // localStorage.getItem('userinput')
-//         // console.log(input)
-//     }
-// }
-
+// event listener on save buttons to send the input from text area to local storage
 $('.btn-primary').on('click', function() {
     var UserText = $(this).siblings('.form-control').val();
     var Hour = $(this).parent().attr('id')
-    console.log("a ver si sale")
     localStorage.setItem(Hour, UserText)
 
 })
